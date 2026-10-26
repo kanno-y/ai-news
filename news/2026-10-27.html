@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIニュース朝刊 2026-10-27</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--sub:#5b6474;--accent:#2f6fed;--warn:#d9480f}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1e232b;--ink:#e8ebf0;--sub:#9aa3b2;--accent:#6e9bff;--warn:#ff8a5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;color:var(--sub)}
+.lead{background:var(--card);border-left:5px solid var(--warn);border-radius:10px;padding:16px 20px;margin:24px 0}
+.lead b{color:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{border:1px solid var(--sub);background:transparent;color:var(--ink);border-radius:999px;padding:4px 14px;cursor:pointer;font-size:14px}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:16px}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:8px}
+.tag{font-size:12px;color:var(--sub)}.must{display:inline-block;background:var(--warn);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.card h2{margin:0;font-size:17px;line-height:1.5}.card p{margin:0}
+.tip{background:rgba(47,111,237,.08);border-radius:8px;padding:8px 12px;font-size:14px}
+.card a{color:var(--accent);font-size:14px;text-decoration:none;margin-top:auto}.card a:hover{text-decoration:underline}
+footer{margin-top:32px;color:var(--sub);font-size:13px}
+.tips{margin-top:40px}.sec-h{font-size:21px;margin:0 0 4px}.sec-sub{margin:0 0 16px;color:var(--sub);font-size:14px}
+code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius:4px}
+.share{border:1px dashed var(--sub);border-radius:8px;padding:8px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.share-h{font-size:12px;color:var(--sub)}.share-t{margin:0;word-break:break-all}
+.copy{align-self:flex-end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:6px;padding:2px 12px;cursor:pointer;font-size:13px}
+.copy.done{background:var(--accent);color:#fff}
+</style></head><body><div class="wrap">
+
+<header><h1>AIニュース朝刊</h1><p>2026年10月27日（火）　開発者向け・7件（10/26 朝〜）</p></header>
+<div class="lead"><b>今日のひとこと</b>　Claude Code v2.1.311 で、標準コンテキストが 200K を超えると止まる問題や SubagentStop フックの多重実行が直ったので、<code>claude update</code> を。OpenAI の安価な GPT-6.1 Terra は Bedrock でも同日に使えるようになりました。</div>
+<div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude Code v2.1.311：200K 超えで止まる問題と SubagentStop フックの多重実行を修正</h2><p>標準コンテキストのセッションが 200K トークンを超えると「Usage credits required for 1M context」で止まっていた問題が、会話を自動で要約して続ける形に直り、<code>SubagentStop</code> フックもサブエージェント終了時に1回だけ動くようになりました。</p><div class="tip">💡 <code>claude update</code> で更新を。<code>SubagentStop</code> で通知や集計をしている人は重複が止まったか確認。後から接続した MCP サーバーのツールをサブエージェントが使えない不具合も直っています。</div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.311" target="_blank">リリースノート ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude Agent SDK（TypeScript）v0.3.311：Node.js 18.14.0 以上が必要に</h2><p>対応する最小 Node.js が 18.0.0 から 18.14.0 に上がり、<code>ModelUsage</code> にキャッシュ作成トークンを5分・1時間の寿命別に分けたフィールドが加わりました。</p><div class="tip">💡 CI やコンテナで <code>node -v</code> を確認してから上げる。1時間キャッシュの書き込み量は <code>cacheCreationEphemeral1hInputTokens</code> で別に見られるので、コスト集計に足しておくと便利です。</div><a href="https://github.com/anthropics/claude-agent-sdk-typescript/releases/tag/v0.3.311" target="_blank">リリースノート ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Orca v1.4.241：チャットがエージェントごとの権限設定に従うように</h2><p>新しいチャットが Settings → Agents の各エージェントの権限設定を使うようになり、内蔵ブラウザには DevTools のドック表示やタブのミュート、エージェントがクリック・入力している位置の表示が入りました。</p><div class="tip">💡 更新後に Settings → Agents で各エージェントの権限を見直す（チャットにもそのまま効くため）。エージェントの画面操作を確かめたいときは内蔵ブラウザで動きを見ながら試せます。</div><a href="https://github.com/stablyai/orca/releases/tag/v1.4.241" target="_blank">リリースノート ↗</a></article>
+<article class="card" data-c="model"><span class="tag">🧠 モデル</span><h2>OpenAI「GPT-6.1 Terra」公開、Amazon Bedrock でも同日一般提供</h2><p>画面操作と視覚的な推論に強い速くて安いモデルで、API の標準価格は GPT-5.6 Terra や GPT-6.1 Sol より 50% 安く、ChatGPT Work・Codex・API（<code>gpt-6.1-terra</code>）と Bedrock で使えます。</p><div class="tip">💡 公式も最も難しいコーディングは Sol / Astra を推奨しているので、Terra は定型の大量処理や画面操作系で比較を。Bedrock 版は最大100万入力トークン・画像入力対応で、対応リージョンは Bedrock ドキュメントで確認を。</div><a href="https://openai.com/index/introducing-gpt-6-1-terra" target="_blank">OpenAI ↗</a></article>
+<article class="card" data-c="aws"><span class="tag">☁️ AWS</span><h2>AWS KMS が耐量子暗号 ML-KEM に対応（東京リージョンも対象）</h2><p>NIST FIPS 203 の ML-KEM-512 / 768 / 1024 の鍵ペアを KMS で扱え、<code>Encapsulate</code> / <code>Decapsulate</code> API で相手と共有秘密を取り決められるようになりました（UAE・バーレーン・中国以外の全リージョン）。</p><div class="tip">💡 すぐの移行は不要。外部連携で ECDH や RSA を使って鍵交換している箇所があれば洗い出し、KMS Developer Guide の Key spec reference で ML-KEM の鍵仕様を確認しておく。</div><a href="https://aws.amazon.com/about-aws/whats-new/2026/10/kms-ml-kem-post-quantum/" target="_blank">AWS What&#39;s New ↗</a></article>
+<article class="card" data-c="sec"><span class="tag">🔒 セキュリティ</span><h2>Cathedral の AI エージェントが 12 時間足らずで Anthropic の業務システムに到達（許可済みテスト）</h2><p>Anthropic の外部研究者向けプログラムの中で、外部の営業・人事・IT 系ソフトの弱点を突いて社内データに到達し、Anthropic は限られた業務システムへのアクセスを認めつつ、Claude の会話・ソースコード・モデルの重みには届いていないとしています。</p><div class="tip">💡 狙われたのは本体ではなく周辺の SaaS。チームで使う Slack 連携アプリや管理系ツールの OAuth 権限、MCP コネクタに渡しているトークンの範囲を棚卸ししておく。</div><a href="https://www.washingtonpost.com/technology/2026/10/26/researchers-cybersecurity-start-up-cathedral-got-inside-anthropic/" target="_blank">The Washington Post ↗</a></article>
+<article class="card" data-c="biz"><span class="tag">💼 業界・規制</span><h2>Anthropic が S-1 を提出、Nasdaq に「ANT」で上場予定</h2><p>Anthropic が米 SEC に新規株式公開の登録届出書を提出し、Nasdaq Global Select Market に上場する予定と発表しました（株数と価格帯は未定）。</p><div class="tip">💡 開発の使い方がすぐ変わる話ではありません。Claude API や Claude Code を業務の柱にしているなら、今後の価格やプランの発表を追っておく程度で十分です。</div><a href="https://www.anthropic.com/news/s1-sec" target="_blank">Anthropic ↗</a></article>
+</div><section class="tips"><h2 class="sec-h">👥 チームに共有したいTips</h2><p class="sec-sub">明日から真似できる使い方です。「共有用」の文はそのまま Slack に貼れます。</p>
+<div class="grid">
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Cursor：実際の PR を再生してエージェントをテストする</h2><p>Agent SDK の <code>agent-sdk github replay</code> は、実在の PR を署名付き webhook のペイロードにしてエージェントに送ります。<code>--dry-run --fixtures-dir fixtures/</code> を付けると評価用のデータとして保存でき、<code>agent-sdk eval</code> でツール呼び出しや返答の形を確かめられます。</p>
+<div class="share"><div class="share-h">共有用</div><p class="share-t" id="share1">Cursor の Agent SDK では agent-sdk github replay で実際の PR を webhook として流し込めるので、push を待たずに PR レビュー系のエージェントを試せます。--dry-run --fixtures-dir fixtures/ で評価用データとして保存し、agent-sdk eval で回帰テストにできます。 https://cursor.com/changelog</p><button class="copy" data-target="share1">コピー</button></div>
+<a href="https://cursor.com/changelog" target="_blank">Cursor Changelog（Agent SDK） ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>エージェント設計は「1本のループ＋スキルとツールの段階読み込み」から</h2><p>Anthropic は、サブエージェントに分ける前に、1つのエージェントがスキルとツールの短い説明だけを持ち、必要なときに中身を読み込む形を勧めています。サブエージェントは、評価で独自の文脈が必要と分かったものだけ残すのが基本です。</p>
+<div class="share"><div class="share-h">共有用</div><p class="share-t" id="share2">Anthropic の記事によると、エージェントは最初からサブエージェントに分けるより、1本のループにスキルとツールを必要なときだけ読み込ませる形が基本とのことです。分けるのは評価で効果が確かめられたものだけにすると、引き継ぎで情報が落ちにくくなります。 https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop</p><button class="copy" data-target="share2">コピー</button></div>
+<a href="https://claude.com/resources/articles/building-agents-when-to-fold-subagents-into-your-main-agent-loop" target="_blank">Claude（Anthropic） ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Bedrock の Web Search で参照先を信頼できるドメインに絞る</h2><p>Bedrock の <code>web_search</code> ツールに <code>filters</code> の <code>allowed_domains</code>（最大100件）を指定すると、根拠に使う検索結果を公式ドキュメントなどに限定できます。<code>blocked_domains</code> で除外も可能です（現在は米国リージョンと GovCloud のみ）。</p>
+<div class="share"><div class="share-h">共有用</div><p class="share-t" id="share3">Amazon Bedrock の Web Search は、web_search ツールの filters に allowed_domains を指定すると、回答の根拠を指定したドメインだけに絞れます（最大100件、blocked_domains で除外も可）。社内向けの調査ボットで公式ドキュメントだけを見せたいときに使えます。 https://aws.amazon.com/about-aws/whats-new/2026/10/bedrock-web-search-domain-user-location/</p><button class="copy" data-target="share3">コピー</button></div>
+<a href="https://aws.amazon.com/about-aws/whats-new/2026/10/bedrock-web-search-domain-user-location/" target="_blank">AWS What&#39;s New ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Claude Code：git 管理外の生成ファイルを @ で選べるようにする</h2><p>v2.1.311 から、<code>@</code> のファイル選択が <code>.ignore</code> / <code>.rgignore</code> の否定ルールに従うようになりました。<code>.gitignore</code> で除外している生成コード（GraphQL の型など）も、<code>.ignore</code> に <code>!パス</code> を書けば @ で指定できます。</p>
+<div class="share"><div class="share-h">共有用</div><p class="share-t" id="share4">Claude Code（v2.1.311〜）では、.gitignore で除外しているファイルでも、.ignore に !パス を書けば @ のファイル選択で選べるようになりました。生成された GraphQL の型などをエージェントに読ませたいときに便利です。 https://github.com/anthropics/claude-code/releases/tag/v2.1.311</p><button class="copy" data-target="share4">コピー</button></div>
+<a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.311" target="_blank">Claude Code リリースノート ↗</a></article>
+</div></section>
+<footer>出典は各リンク先の一次情報・報道記事です。</footer></div><script>
+document.getElementById('f').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+document.querySelectorAll('#f button').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('.card:not([data-c=team])').forEach(c=>c.style.display=(b.dataset.c==='all'||c.dataset.c===b.dataset.c)?'':'none');});
+</script><script>
+function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
+try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
+if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
+</script></body></html>
