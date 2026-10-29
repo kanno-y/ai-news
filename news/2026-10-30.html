@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIニュース朝刊 2026-10-29</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--sub:#5b6474;--accent:#2f6fed;--warn:#d9480f}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1e232b;--ink:#e8ebf0;--sub:#9aa3b2;--accent:#6e9bff;--warn:#ff8a5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;color:var(--sub)}
+.lead{background:var(--card);border-left:5px solid var(--warn);border-radius:10px;padding:16px 20px;margin:24px 0}
+.lead b{color:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{border:1px solid var(--sub);background:transparent;color:var(--ink);border-radius:999px;padding:4px 14px;cursor:pointer;font-size:14px}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:16px}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:8px}
+.tag{font-size:12px;color:var(--sub)}.must{display:inline-block;background:var(--warn);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.card h2{margin:0;font-size:17px;line-height:1.5}.card p{margin:0}
+.tip{background:rgba(47,111,237,.08);border-radius:8px;padding:8px 12px;font-size:14px}
+.card a{color:var(--accent);font-size:14px;text-decoration:none;margin-top:auto}.card a:hover{text-decoration:underline}
+footer{margin-top:32px;color:var(--sub);font-size:13px}
+.tips{margin-top:40px}.sec-h{font-size:21px;margin:0 0 4px}.sec-sub{margin:0 0 16px;color:var(--sub);font-size:14px}
+code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius:4px}
+.share{border:1px dashed var(--sub);border-radius:8px;padding:8px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.share-h{font-size:12px;color:var(--sub)}.share-t{margin:0;word-break:break-all}
+.copy{align-self:flex-end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:6px;padding:2px 12px;cursor:pointer;font-size:13px}
+.copy.done{background:var(--accent);color:#fff}
+</style></head><body><div class="wrap">
+
+<header><h1>AIニュース朝刊</h1><p>2026年10月30日（金）　開発者向け・7件（10/29 朝〜）</p></header>
+<div class="lead"><b>今日のひとこと</b>　Vercel で Node.js 26 LTS が使えるようになり、<code>engines.node</code> が <code>&gt;=20</code> のような書き方だと次のデプロイで自動的に 26 に上がります。ほかにも Claude API・Codex・Grok API・Orca と、ふだん使うツールの更新が多い日です。</div>
+<div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Vercel で Node.js 26 LTS が GA、設定によっては次のデプロイから自動で移行</h2><p>ビルドと Vercel Functions で Node.js 26 が使えるようになり、新規プロジェクトのデフォルトになりました。組み込みの <code>fetch</code> はデフォルトで HTTP/2 を使います。</p><div class="tip">💡 <code>package.json</code> の <code>engines.node</code> を確認し、まだ上げたくなければ <code>24.x</code> などに固定します。HTTP/1.1 のままにしたいときは環境変数 <code>VERCEL_FETCH_DISABLE_H2=1</code> を設定して再デプロイします。</div><a href="https://vercel.com/changelog/node-js-26-lts-is-now-generally-available-on-vercel" target="_blank">Vercel Changelog ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Orca v1.4.244：リモート SSH のファイル保存とターミナルの安定化</h2><p>リモート SSH 上のファイルをローカルと同じように保存できるようになり（最大50MB）、Windows で新しいターミナルがすぐ使えない問題や macOS/Linux での固まりも直りました。</p><div class="tip">💡 アップデート後、ターミナル修正の一部はターミナルホストの再起動で反映されます。リモート先の Orca サーバーも同じバージョンにそろえ、worktree の場所を <code>~</code> 始まりで書いている場合はホームフォルダとして解釈されるようになった点を確認します。</div><a href="https://github.com/stablyai/orca/releases/tag/v1.4.244" target="_blank">Orca v1.4.244 リリースノート ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Claude API：利用量とコストを細かく見られる Analytics API（ベータ）</h2><p>新しい <code>/v1/organizations/analytics/usage</code> と <code>/cost</code> で、モデル・ワークスペース・API キー・ユーザー別に集計できます。従来の Usage and Cost API はレガシー扱いですが、引き続きサポートされます。</p><div class="tip">💡 ベータヘッダー <code>analytics-usage-cost-2026-08-24</code> を付けて試します。あわせて Messages API のリクエスト上限が 128MB に上がったので、大きな PDF や画像で上限に当たっていた処理は再試行できます。</div><a href="https://docs.claude.com/en/release-notes/api" target="_blank">Claude Platform リリースノート ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Codex CLI 0.166.0：<code>codex doctor --network-only</code> と <code>codex queue --resume</code></h2><p>キーボードで会話履歴を検索できるようになり、resume や fork のときに承認設定が引き継がれます。GPT-6.1 Terra も Bedrock と Vertex のモデル一覧に入りました。</p><div class="tip">💡 社内ネットワークやプロキシ越しにつながらないときは、<code>codex doctor --network-only</code> で通信まわりだけを切り分けます。</div><a href="https://github.com/openai/codex/releases/tag/rust-v0.166.0" target="_blank">Codex rust-v0.166.0 ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Grok API：<code>guidelines</code> でカテゴリごとに応答を控えさせる</h2><p>Chat Completions と Responses API のリクエストに <code>guidelines</code> を入れると、<code>nsfw</code>・<code>violence</code>・<code>profanity</code> を <code>decline</code>（応じない）に指定でき、すべての API 利用者が使えます。</p><div class="tip">💡 <code>{"type":"policy","category":"profanity","behavior":"decline"}</code> を足して試します。指定はそのリクエストだけに効くので毎回送ります（OpenAI Python SDK では <code>extra_body</code> に入れます）。マルチエージェントモデルでは使えません。</div><a href="https://docs.x.ai/developers/advanced-api-usage/custom-moderation-controls" target="_blank">xAI Docs ↗</a></article>
+<article class="card" data-c="aws"><span class="tag">☁️ AWS</span><h2>Step Functions のワークフローを AI エージェントのツールとして公開</h2><p>AgentCore Gateway を通して、既存の Standard と Express のワークフローを MCP ツールとしてエージェントから呼べるようになり、実行状況の確認もできます。</p><div class="tip">💡 承認や課金のように、エージェントに任せきりにしたくない手順を Step Functions にまとめ、Developer Guide のチュートリアルで Gateway のターゲットに登録してみます。料金は通常どおりです。</div><a href="https://aws.amazon.com/about-aws/whats-new/2026/10/step-functions-workflows-ai-agent-tools/" target="_blank">AWS What's New ↗</a></article>
+<article class="card" data-c="sec"><span class="tag">🔒 セキュリティ</span><h2>Aurora PostgreSQL が耐量子 TLS 鍵交換に対応</h2><p>Aurora PostgreSQL 18 以上で <code>ssl_groups</code> パラメータを変更できるようになり、許可リストから耐量子暗号の鍵交換方式を選べます。</p><div class="tip">💡 <code>aws rds describe-db-clusters --query 'DBClusters[].EngineVersion'</code> でバージョンを確認し、18 以上ならクラスターパラメータグループの <code>ssl_groups</code> を見直します。</div><a href="https://aws.amazon.com/about-aws/whats-new/2026/10/aurora-postgresql-post-quantum-tls-key-exchange/" target="_blank">AWS What's New ↗</a></article>
+</div><section class="tips"><h2 class="sec-h">👥 チームに共有したいTips</h2><p class="sec-sub">明日から真似できる使い方です。「共有用」の文はそのまま Slack に貼れます。</p>
+<div class="grid">
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Claude Code：<code>/rewind</code> の「Summarize from here」で長いデバッグを圧縮</h2><p><code>/rewind</code>（または Esc を2回）で地点を選んで「Summarize from here」を選ぶと、そこから後ろの会話だけが要約されて文脈が軽くなります。ファイルはそのままで、要約の観点も指示できます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share1">Claude Code で長いデバッグのあと文脈が重くなったら、/rewind から「Summarize from here」を選ぶと、最初の指示を残したまま後半だけ要約できます。ファイルは変わりません。https://code.claude.com/docs/en/checkpointing</p><button class="copy" data-target="share1">コピー</button></div><a href="https://code.claude.com/docs/en/checkpointing" target="_blank">Claude Code Docs ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Vercel Firewall：AI クローラーと AI アシスタントを分けて制御</h2><p>AI Bots マネージドルールで、学習用に集めるクローラーはブロックしつつ、ユーザーの質問に答えるために読みに来るアシスタントは許可できます。全プランで使えます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share2">Vercel Firewall の AI Bots ルールで、AI の学習用クローラーと、回答のために読みに来る AI アシスタントを別々にブロック・許可できるようになりました。Security > Firewall > Rules から設定でき、CLI なら vercel firewall diff で確認してから publish できます。https://vercel.com/changelog/block-ai-crawlers-and-assistants-independently-with-managed-rules</p><button class="copy" data-target="share2">コピー</button></div><a href="https://vercel.com/changelog/block-ai-crawlers-and-assistants-independently-with-managed-rules" target="_blank">Vercel Changelog ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Vercel Flags：SDK を 1.5.3 以上に上げるだけでコールドスタートが速くなる</h2><p>デプロイに同梱されたフラグのデータを起動時に読むようになり、利用状況の送信で Function の実行時間が延びることもなくなりました。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share3">Vercel Flags を使っているプロジェクトは、@flags-sdk/vercel を 1.5.3 以上に上げて再デプロイすると、コールドスタート時の初期化が速くなり、Function の実行時間も延びなくなります。https://vercel.com/changelog/vercel-flags-starts-7x-faster-and-no-longer-extends-function-duration</p><button class="copy" data-target="share3">コピー</button></div><a href="https://vercel.com/changelog/vercel-flags-starts-7x-faster-and-no-longer-extends-function-duration" target="_blank">Vercel Changelog ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>AgentCore CLI 1.0：既存プロジェクトは <code>agentcore migrate</code> で移行</h2><p>v1 では Runtime や Gateway を ID や ARN で直接操作でき、v0 のプロジェクトは <code>agentcore migrate</code> で移行計画を確認してからその場で移行できます。事前にすべてコミットしておく必要があります。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share4">AgentCore CLI が 1.0 になりました。v0 で作ったプロジェクトは、変更をすべてコミットしてから agentcore migrate を実行すると、移行計画を確認したうえで移行できます。https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-bedrock-agentcore-cli-version-1-0-available/</p><button class="copy" data-target="share4">コピー</button></div><a href="https://aws.amazon.com/about-aws/whats-new/2026/10/amazon-bedrock-agentcore-cli-version-1-0-available/" target="_blank">AWS What's New ↗</a></article>
+</div></section>
+<footer>出典は各リンク先の一次情報・報道記事です。</footer></div><script>
+document.getElementById('f').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+document.querySelectorAll('#f button').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('.card:not([data-c=team])').forEach(c=>c.style.display=(b.dataset.c==='all'||c.dataset.c===b.dataset.c)?'':'none');});
+</script><script>
+function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
+try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
+if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
+</script></body></html>
