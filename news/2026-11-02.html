@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIニュース朝刊 2026-11-02</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--sub:#5b6474;--accent:#2f6fed;--warn:#d9480f}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1e232b;--ink:#e8ebf0;--sub:#9aa3b2;--accent:#6e9bff;--warn:#ff8a5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;color:var(--sub)}
+.lead{background:var(--card);border-left:5px solid var(--warn);border-radius:10px;padding:16px 20px;margin:24px 0}
+.lead b{color:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{border:1px solid var(--sub);background:transparent;color:var(--ink);border-radius:999px;padding:4px 14px;cursor:pointer;font-size:14px}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:16px}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:8px}
+.tag{font-size:12px;color:var(--sub)}.must{display:inline-block;background:var(--warn);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.card h2{margin:0;font-size:17px;line-height:1.5}.card p{margin:0}
+.tip{background:rgba(47,111,237,.08);border-radius:8px;padding:8px 12px;font-size:14px}
+.card a{color:var(--accent);font-size:14px;text-decoration:none;margin-top:auto}.card a:hover{text-decoration:underline}
+footer{margin-top:32px;color:var(--sub);font-size:13px}
+.tips{margin-top:40px}.sec-h{font-size:21px;margin:0 0 4px}.sec-sub{margin:0 0 16px;color:var(--sub);font-size:14px}
+code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius:4px}
+.share{border:1px dashed var(--sub);border-radius:8px;padding:8px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.share-h{font-size:12px;color:var(--sub)}.share-t{margin:0;word-break:break-all}
+.copy{align-self:flex-end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:6px;padding:2px 12px;cursor:pointer;font-size:13px}
+.copy.done{background:var(--accent);color:#fff}
+</style></head><body><div class="wrap">
+
+<header><h1>AIニュース朝刊</h1><p>2026年11月2日（月）　開発者向け・7件（10/30 朝〜週末分）</p></header>
+<div class="lead"><b>今日のひとこと</b>　Claude の Opus 4.8 fast mode が11月30日に終了し、それ以降はエラーになるので、<code>speed: "fast"</code> を使っている箇所を今月中に Opus 5.5 へ移しましょう。Vercel では Next.js のキャッシュの読み書きが課金対象になるため、移行前に使用量を確認しておくと安心です。</div>
+<div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude Code v2.1.314〜316：Opus 4.8 の fast mode が11月30日で終了</h2><p>Opus 4.8 の fast mode は10月30日に非推奨になり、11月30日以降に <code>speed: "fast"</code> を付けると、通常速度に戻らずエラーになります。同じリリースで、作業フォルダの外への書き込みを止める設定も入りました。</p><div class="tip">💡 <code>claude-opus-4-8</code> と <code>speed: "fast"</code> の組み合わせがスクリプトや設定に残っていないか探し、Opus 5.5 に移します。<code>claude update</code> のあと、settings.json の <code>permissions</code> に <code>"blockWritesOutsideWorkingDirectories": true</code> を入れると、Write・Edit・NotebookEdit が作業フォルダの外のパスを拒否します。</div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.316" target="_blank">Claude Code v2.1.316 ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Vercel の Data Cache が Runtime Cache に統合、読み書きが課金対象に</h2><p>Next.js の <code>fetch</code> キャッシュと <code>unstable_cache</code> がコード変更なしで Runtime Cache に移り、これまで無料だった読み書きに料金がかかります。Hobby は11月29日に移行し、Pro には移行日が個別に通知されます。</p><div class="tip">💡 移行前に Observability で Data Cache の読み書き量を確認します。多ければ Runtime Cache ダッシュボードの「Optimize with Vercel Agent」か最適化ガイドで減らします。早めに切り替えたい場合は CDN settings から移行できます。</div><a href="https://vercel.com/changelog/data-cache-is-moving-to-runtime-cache" target="_blank">Vercel Changelog ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Claude の Max 20x が「Ultra」に、確認済みアカウントは5時間制限なし</h2><p>Max 5x は「Max」（月$100）、Max 20x は「Ultra」（月$200）に名前が変わりました。確認済みの Ultra アカウントは、5時間ごとの区切りなしに週の上限まで使えます。</p><div class="tip">💡 Settings → Usage に「Current session」のバーがなければ確認済みです。週の上限は Pro の10倍のまま変わらないので、Claude Code で長い作業を続けるときは週の残りを見ながら配分します。</div><a href="https://support.claude.com/en/articles/17728952-what-is-the-ultra-plan" target="_blank">Claude Help Center ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Orca v1.4.245：チャットが多くても軽く、プラグインと新しい Chat UI</h2><p>チャットが数百あっても起動や動作が重くなりにくくなり、Settings → Plugins でテーマやエディタを追加できるようになりました。Mac ではエージェントがバックグラウンドでブラウザなどを操作できます。</p><div class="tip">💡 Settings で「Chat UI」を検索してオンにし、タブを右クリックして TUI と切り替えます。コードを実行するプラグインは入れるときに同意を求められるので、提供元を確認してから許可します。v1.4.244 に戻すと、Source Control の AI アクションのモデル設定がリセットされます。</div><a href="https://github.com/stablyai/orca/releases/tag/v1.4.245" target="_blank">Orca v1.4.245 リリースノート ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Grok API、11月7日から出力テキストに透かしを標準で入れる</h2><p>grok-4.7 など7モデルで、通常のテキスト、構造化出力、ツール呼び出しの引数に透かしが入ります。理由は EU AI Act への対応です。</p><div class="tip">💡 コードの変更は不要です。レスポンスヘッダーの <code>x-watermark: true</code> で付いたかどうかを確認できます。外したい場合はチーム管理者が Console の Team settings からモデルごとに設定しますが、法的な例外にあたることの確認が必要です。</div><a href="https://docs.x.ai/developers/advanced-api-usage/watermarking" target="_blank">xAI Docs ↗</a></article>
+<article class="card" data-c="aws"><span class="tag">☁️ AWS</span><h2>AWS WAF、CloudFront が返す HTML に SDK を自動で埋め込めるように</h2><p>Bot Control（targeted）と ATP・ACFPに必要な JavaScript SDK のタグを、CloudFront が HTML に自動で入れるようになりました。アプリのコードを変える必要はなく、追加料金もかかりません。</p><div class="tip">💡 コンソールで新しく作る web ACL では最初からオンですが、CLI・CDK・CloudFormation で作るとオフのままで、既存の ACL も変わりません。Next.js で Content Security Policy を設定している場合は、WAF Developer Guide の CSP の説明を確認します。</div><a href="https://aws.amazon.com/about-aws/whats-new/2026/10/aws-waf-automatic-sdk-integration-amazon-cloudfront/" target="_blank">AWS What's New ↗</a></article>
+<article class="card" data-c="biz"><span class="tag">💼 業界・規制</span><h2>主要4社、AI 学習を拒否する robots.txt の書き方を共通化</h2><p>OpenAI・Google・Microsoft・Anthropic が、IETF のドラフトにある <code>__usage_ai-training</code> を尊重すると表明しました。Anthropic はすでに対応し、OpenAI は数か月以内、Google と Microsoft は2027年からです。</p><div class="tip">💡 サイトのコンテンツを学習に使われたくない場合は、robots.txt に <code>User-Agent: __usage_ai-training</code> と <code>Disallow: /</code> を書きます。検索エンジンへの掲載は止まりません。</div><a href="https://www.engadget.com/2303225/google-openai-anthropic-ai-crawling-controls/" target="_blank">Engadget ↗</a></article>
+</div><section class="tips"><h2 class="sec-h">👥 チームに共有したいTips</h2><p class="sec-sub">明日から真似できる使い方です。「共有用」の文はそのまま Slack に貼れます。</p>
+<div class="grid">
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Claude Code：チームで使う MCP は <code>--scope project</code> で共有</h2><p><code>claude mcp add --transport http &lt;名前&gt; &lt;URL&gt; --scope project</code> で追加すると、プロジェクト直下の <code>.mcp.json</code> に書かれ、コミットすれば全員が同じ MCP サーバーを使えます。API キーは <code>${API_KEY}</code> のように環境変数で書けば、秘密をコミットせずに済みます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share1">チームで使う MCP サーバーは、claude mcp add に --scope project を付けると .mcp.json に保存され、コミットするだけで全員にそろいます。API キーは ${API_KEY} の形で書けば秘密を入れずに済みます。https://code.claude.com/docs/en/mcp</p><button class="copy" data-target="share1">コピー</button></div><a href="https://code.claude.com/docs/en/mcp" target="_blank">Claude Code Docs ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Cursor：push する前に <code>/review-bugbot</code> でレビュー</h2><p>エージェントで <code>/review-bugbot</code> を実行すると、ブランチの変更を Bugbot がその場でレビューします。同じ差分で PR を作ると、GitHub 側の Bugbot は重ねてレビューしません。Cursor 3.7 以降と Cursor CLI で使えます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share2">Cursor で /review-bugbot を実行すると、push 前に Bugbot のレビューを受けられます。同じ差分で PR を出すと GitHub 側では二重にレビューされません。https://cursor.com/docs/bugbot</p><button class="copy" data-target="share2">コピー</button></div><a href="https://cursor.com/docs/bugbot" target="_blank">Cursor Docs ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Playwright：<code>--only-changed</code> と <code>--last-failed</code> でテストを絞る</h2><p><code>npx playwright test --only-changed</code> はコミットしていない変更に関係するテストファイルだけを、<code>--only-changed=main</code> なら main との差分だけを実行します。<code>--last-failed</code> は前回失敗したテストだけを再実行します。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share3">Playwright の E2E を毎回全部回さず、npx playwright test --only-changed で変更したテストだけ、--last-failed で前回落ちたものだけを実行できます。https://playwright.dev/docs/test-cli</p><button class="copy" data-target="share3">コピー</button></div><a href="https://playwright.dev/docs/test-cli" target="_blank">Playwright Docs ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Grok API：急ぎのリクエストだけ <code>service_tier: "priority"</code></h2><p>Chat Completions と Responses API でリクエストごとに <code>service_tier: "priority"</code> を付けると、優先して処理されます。実際に使われた tier はレスポンスの <code>service_tier</code> でわかり、priority の料金は使ったときだけかかります。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share4">Grok API で応答を急ぎたいリクエストだけ service_tier: "priority" を付けると優先処理されます。実際の tier はレスポンスの service_tier で確認でき、料金は使ったときだけです。https://docs.x.ai/developers/advanced-api-usage/priority-processing</p><button class="copy" data-target="share4">コピー</button></div><a href="https://docs.x.ai/developers/advanced-api-usage/priority-processing" target="_blank">xAI Docs ↗</a></article>
+</div></section>
+<footer>出典は各リンク先の一次情報・報道記事です。</footer></div><script>
+document.getElementById('f').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+document.querySelectorAll('#f button').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('.card:not([data-c=team])').forEach(c=>c.style.display=(b.dataset.c==='all'||c.dataset.c===b.dataset.c)?'':'none');});
+</script><script>
+function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
+try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
+if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
+</script></body></html>
