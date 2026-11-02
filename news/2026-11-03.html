@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIニュース朝刊 2026-11-03</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--sub:#5b6474;--accent:#2f6fed;--warn:#d9480f}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1e232b;--ink:#e8ebf0;--sub:#9aa3b2;--accent:#6e9bff;--warn:#ff8a5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;color:var(--sub)}
+.lead{background:var(--card);border-left:5px solid var(--warn);border-radius:10px;padding:16px 20px;margin:24px 0}
+.lead b{color:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{border:1px solid var(--sub);background:transparent;color:var(--ink);border-radius:999px;padding:4px 14px;cursor:pointer;font-size:14px}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:16px}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:8px}
+.tag{font-size:12px;color:var(--sub)}.must{display:inline-block;background:var(--warn);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.card h2{margin:0;font-size:17px;line-height:1.5}.card p{margin:0}
+.tip{background:rgba(47,111,237,.08);border-radius:8px;padding:8px 12px;font-size:14px}
+.card a{color:var(--accent);font-size:14px;text-decoration:none;margin-top:auto}.card a:hover{text-decoration:underline}
+footer{margin-top:32px;color:var(--sub);font-size:13px}
+.tips{margin-top:40px}.sec-h{font-size:21px;margin:0 0 4px}.sec-sub{margin:0 0 16px;color:var(--sub);font-size:14px}
+code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius:4px}
+.share{border:1px dashed var(--sub);border-radius:8px;padding:8px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.share-h{font-size:12px;color:var(--sub)}.share-t{margin:0;word-break:break-all}
+.copy{align-self:flex-end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:6px;padding:2px 12px;cursor:pointer;font-size:13px}
+.copy.done{background:var(--accent);color:#fff}
+</style></head><body><div class="wrap">
+
+<header><h1>AIニュース朝刊</h1><p>2026年11月3日（火）　開発者向け・6件（11/2 朝〜）</p></header>
+<div class="lead"><b>今日のひとこと</b>　Claude API にメッセージスレッド（beta）が入り、長いエージェントループでも2ターン目以降は差分だけ送れば済むようになりました。Orca は追加の指示が既定でキューに入るようになり、Enter の動きが変わっているので注意です。</div>
+<div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude API にメッセージスレッド（beta）：2ターン目からは新しいメッセージだけ送る</h2><p>Messages API に <code>thread</code> パラメータが入り、会話をサーバー側に短時間預けて、以降は新しいメッセージと直前の応答 id だけを送ればよくなりました。リクエストが小さくなり、会話が伸びても最初のトークンまでの時間が安定します（スレッドは最後のリクエストから5分で期限切れ）。</p><div class="tip">💡 ヘッダー <code>anthropic-beta: message-threads-2026-08-12</code> を付け、初回は <code>"thread": {"type": "create"}</code>、次から <code>{"type": "continue", "previous_message_id": …}</code>。SDK の beta tool runner は既定でスレッドを使い、スレッドは ZDR 対象外なので、ZDR が必要な処理では <code>thread: false</code> を確認。</div><a href="https://platform.claude.com/docs/en/build-with-claude/message-threads" target="_blank">Claude Docs ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Orca v1.4.246：Chat UI が正式版に、追加の指示は既定でキューへ</h2><p>Chat UI が実験機能を卒業し、エージェントごとに Chat と CLI を選べるようになりました。実行中に送った追加の指示は既定でキューに入り、Orchestrator V3 でトークン効率も上がっています。</p><div class="tip">💡 Enter はキュー、<code>Cmd/Ctrl+Enter</code> で実行中のターンに割り込み。前の動きに戻すなら Settings → Chat → Behavior → Queue follow-ups、表示の切り替えは Settings → Agents。</div><a href="https://github.com/stablyai/orca/releases/tag/v1.4.246" target="_blank">GitHub Releases ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 開発ツール</span><h2>Vercel MCP、事前登録なしの MCP クライアントも接続できるように</h2><p>Client ID Metadata Documents（CIMD）に対応し、どの MCP クライアントも Vercel の審査なしで接続を申請できるようになりました。ログインと接続ごとの承認は引き続き必要です。</p><div class="tip">💡 承認画面ではクライアント名だけでなく、メタデータを配信しているホスト名（例「Claude Code by claude.ai」）を見てから Allow Access を押す。CIMD クライアントには verified バッジは付きません。</div><a href="https://vercel.com/changelog/vercel-mcp-now-supports-client-id-metadata-documents" target="_blank">Vercel Changelog ↗</a></article>
+<article class="card" data-c="sec"><span class="tag">🔒 セキュリティ</span><h2>Vercel、ビルド時に悪意ある npm パッケージをインストール前に止める</h2><p>全プランの新しいビルドで、lockfile の確認とインストール中のダウンロードの両方で、マルウェアなどでブロック対象になったバージョンを止めるようになりました。設定は不要です。</p><div class="tip">💡 デプロイが blocked dependency で失敗したら、エラーに出たパッケージを安全なバージョンに上げて lockfile を更新し、再デプロイ。ビルドキャッシュ経由で復元した依存も対象です。</div><a href="https://vercel.com/changelog/blocking-malicious-npm-packages-before-and-during-installation" target="_blank">Vercel Changelog ↗</a></article>
+<article class="card" data-c="aws"><span class="tag">☁️ AWS</span><h2>RDS のスナップショット料金を1つずつ見られるように</h2><p>これまで DB インスタンス単位でまとめて出ていたスナップショット料金を、コスト配分タグでスナップショットごとに確認できるようになりました。追加料金なしで、全スナップショットで既定で有効です。</p><div class="tip">💡 スナップショットに用途タグ（例 <code>Purpose</code>）を付け、Billing のコスト配分タグで有効化して Cost Explorer でタグ別に絞る。お知らせは「all Amazon RDS engines」とだけあり、Aurora が対象かは明記なし。</div><a href="https://aws.amazon.com/about-aws/whats-new/2026/11/amazon-rds-per-snapshot-billing/" target="_blank">AWS What's New ↗</a></article>
+<article class="card" data-c="biz"><span class="tag">💼 業界・規制</span><h2>ChatGPT と Codex の利用枠、12月から共通に</h2><p>Plus・Pro・Business では、ChatGPT と Codex の利用枠が共通のトークン単位の枠になり、Instant チャットは枠を使いません。開始日と枠の大きさはまだ公表されていません。</p><div class="tip">💡 Codex を多用しているなら、切り替え後は Settings → Usage で残りとリセット時刻を確認。上限に達したら、リセットを待つか、プランを上げるか、クレジットを買う形です。</div><a href="https://help.openai.com/en/articles/20001625-understanding-chatgpt-and-codex-usage-limits" target="_blank">OpenAI Help Center ↗</a></article>
+</div><section class="tips"><h2 class="sec-h">👥 チームに共有したいTips</h2><p class="sec-sub">明日から真似できる使い方です。「共有用」の文はそのまま Slack に貼れます。</p>
+<div class="grid">
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>pnpm：公開から1日たっていないバージョンは入れない（<code>minimumReleaseAge</code>）</h2><p><code>pnpm-workspace.yaml</code> に <code>minimumReleaseAge: 1440</code>（単位は分）を書くと、間接依存も含めて公開から1日未満のバージョンが入らなくなります。すぐに取り下げられる乗っ取り版を踏みにくくなり、急ぎのパッケージは <code>minimumReleaseAgeExclude</code> で例外にできます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share1">pnpm-workspace.yaml に minimumReleaseAge: 1440 を書くと、公開から1日たっていないパッケージは間接依存も含めて入らなくなります。すぐ取り下げられる乗っ取り版を避けやすくなり、例外は minimumReleaseAgeExclude に書けます。https://pnpm.io/settings/dependency-resolution</p><button class="copy" data-target="share1">コピー</button></div><a href="https://pnpm.io/settings/dependency-resolution" target="_blank">pnpm Docs ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Next.js：ログや計測は <code>after()</code> でレスポンスのあとに回す</h2><p><code>next/server</code> の <code>after()</code>（v15.1 で安定版）に渡した処理は、レスポンスを返したあとに動くので、ログや分析で応答を遅らせません。エラーや <code>redirect</code> のときも実行されます。Server Component では <code>cookies()</code> や <code>headers()</code> をコールバックの中で呼ぶとエラーになるので、先に読んで値を渡します。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share2">Next.js 15.1 以降は next/server の after() で、ログや分析をレスポンス送信後に回せます。Server Component では cookies() や headers() を先に読んで値を渡してください（コールバックの中で呼ぶとエラーになります）。https://nextjs.org/docs/app/api-reference/functions/after</p><button class="copy" data-target="share2">コピー</button></div><a href="https://nextjs.org/docs/app/api-reference/functions/after" target="_blank">Next.js Docs ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Google Cloud：Gemini API や Cloud Run に月の上限額（spend cap）を付ける</h2><p>10月に正式版になった spend cap 付きの予算は、1プロジェクト・1サービス単位で、見積もり費用が上限を超えるとその月の残りは新しいリクエストを止め、翌月に自動で再開します。リソースは消えません。止まるまでに少し時間差があり、その間の超過分は請求されます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share3">Google Cloud の予算で spend cap を設定すると、Gemini API や Cloud Run の見積もり費用が上限を超えた時点で、その月の残りは止まります（リソースは消えません）。止まるまでの超過分は請求されますが、キー漏れやループ暴走の保険になります。https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps</p><button class="copy" data-target="share3">コピー</button></div><a href="https://docs.cloud.google.com/billing/docs/how-to/budgets-spend-caps" target="_blank">Google Cloud Docs ↗</a></article>
+</div></section>
+<footer>出典は各リンク先の一次情報・報道記事です。</footer></div><script>
+document.getElementById('f').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+document.querySelectorAll('#f button').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('.card:not([data-c=team])').forEach(c=>c.style.display=(b.dataset.c==='all'||c.dataset.c===b.dataset.c)?'':'none');});
+</script><script>
+function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
+try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
+if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
+</script></body></html>
