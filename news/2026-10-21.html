@@ -27,7 +27,7 @@ code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius
 .copy.done{background:var(--accent);color:#fff}
 </style></head><body><div class="wrap">
 
-<header><h1>AIニュース朝刊</h1><p>2026年10月21日（水）　開発者向け・6件</p></header>
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年10月21日（水）　開発者向け・6件</p></header>
 <div class="lead"><b>今日のひとこと</b>　Claude Code v2.1.305 で、Bedrock・Vertex 経由だと全リクエストが失敗する 2.1.304 の退行が直りました。Bedrock 経由で使っている人は今朝すぐ更新を。AWS では Bedrock の Claude で構造化出力が使えるようになっています。</div>
 <div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="model">🧠 モデル</button></div><div class="grid">
 <article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude Code v2.1.305：Bedrock 経由で全リクエストが失敗する退行を修正</h2><p>2.1.304 では、Bedrock や Vertex、ゲートウェイがツール検索を拒否すると毎回失敗していましたが、ツール検索なしで再試行するよう直りました。</p><div class="tip">💡 <code>claude --version</code> で 2.1.305 か確認（Homebrew なら <code>brew upgrade claude-code</code>）。<code>allowedMcpServers</code> の扱いも変わったので、managed-mcp.json で止めたいサーバーは <code>deniedMcpServers</code> へ。</div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.305" target="_blank">リリースノート ↗</a></article>
@@ -54,4 +54,5 @@ function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
 try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
 if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
-</script></body></html>
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>

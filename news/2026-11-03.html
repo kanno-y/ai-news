@@ -27,7 +27,7 @@ code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius
 .copy.done{background:var(--accent);color:#fff}
 </style></head><body><div class="wrap">
 
-<header><h1>AIニュース朝刊</h1><p>2026年11月3日（火）　開発者向け・6件（11/2 朝〜）</p></header>
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年11月3日（火）　開発者向け・6件（11/2 朝〜）</p></header>
 <div class="lead"><b>今日のひとこと</b>　Claude API にメッセージスレッド（beta）が入り、長いエージェントループでも2ターン目以降は差分だけ送れば済むようになりました。Orca は追加の指示が既定でキューに入るようになり、Enter の動きが変わっているので注意です。</div>
 <div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
 <article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude API にメッセージスレッド（beta）：2ターン目からは新しいメッセージだけ送る</h2><p>Messages API に <code>thread</code> パラメータが入り、会話をサーバー側に短時間預けて、以降は新しいメッセージと直前の応答 id だけを送ればよくなりました。リクエストが小さくなり、会話が伸びても最初のトークンまでの時間が安定します（スレッドは最後のリクエストから5分で期限切れ）。</p><div class="tip">💡 ヘッダー <code>anthropic-beta: message-threads-2026-08-12</code> を付け、初回は <code>"thread": {"type": "create"}</code>、次から <code>{"type": "continue", "previous_message_id": …}</code>。SDK の beta tool runner は既定でスレッドを使い、スレッドは ZDR 対象外なので、ZDR が必要な処理では <code>thread: false</code> を確認。</div><a href="https://platform.claude.com/docs/en/build-with-claude/message-threads" target="_blank">Claude Docs ↗</a></article>
@@ -51,4 +51,5 @@ function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
 try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
 if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
-</script></body></html>
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>

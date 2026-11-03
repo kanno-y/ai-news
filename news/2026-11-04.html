@@ -26,7 +26,7 @@ code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius
 .copy{align-self:flex-end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:6px;padding:2px 12px;cursor:pointer;font-size:13px}
 .copy.done{background:var(--accent);color:#fff}
 </style></head><body><div class="wrap">
-<header><h1>AIニュース朝刊</h1><p>2026年11月4日（水）　開発者向け・6件（11/3 朝〜）</p></header>
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年11月4日（水）　開発者向け・6件（11/3 朝〜）</p></header>
 <div class="lead"><b>今日のひとこと</b>　Next.js 15 を使っているなら、まず <code>next@15.5.29</code> に上げて、Edge ルートで Cookie を設定している箇所がないか確認しましょう。Kiro CLI を使っている人は、3.0.0 で廃止されたコマンドがスクリプトに残っていないかも見ておくと安心です。</div>
 <div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="sec">🔒 セキュリティ</button><button data-c="tech">🧪 実践テクニック</button></div><div class="grid">
 <article class="card" data-c="sec"><span class="tag">🔒 セキュリティ<span class="must">要確認</span></span><h2>Next.js 15.5.29 に上げる：Edge ルートの Cookie 漏れなど3件を修正</h2><p>11月のセキュリティリリース（15.5.29 / 16.4.5）で、Edge ランタイムのルートで <code>NextResponse.cookies.set()</code> した Cookie が <code>x-middleware-set-cookie</code> ヘッダーにも載り HttpOnly でも同一オリジンの JS から読めた問題、セルフホストで <code>images.dangerouslyAllowSVG: false</code> をすり抜けて SVG が配信される問題、取得した <code>Response</code> をそのまま返すルートの応答インジェクション（HTTP/1.1 パイプライン対応プロキシ配下）が直りました。</p><div class="try"><b>👉 やってみる：</b><code>npm install next@15.5.29</code> → <code>rg -n "runtime = 'edge'" app src</code> で Edge ルートを洗い出し、その中の <code>NextResponse.cookies.set</code> と <code>return fetch(</code> のそのまま返しを確認。Node ランタイムや <code>cookies().set()</code> は影響なし。</div><a href="https://nextjs.org/blog/november-2026-security-release" target="_blank">Next.js Blog ↗</a></article>
@@ -51,4 +51,5 @@ function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
 try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
 if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
-</script></body></html>
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>

@@ -27,7 +27,7 @@ code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius
 .copy.done{background:var(--accent);color:#fff}
 </style></head><body><div class="wrap">
 
-<header><h1>AIニュース朝刊</h1><p>2026年10月26日（月）　開発者向け・7件（10/23 朝〜）</p></header>
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年10月26日（月）　開発者向け・7件（10/23 朝〜）</p></header>
 <div class="lead"><b>今日のひとこと</b>　週末に MCP 公式サーバー（filesystem・fetch など）の脆弱性修正が出ました。日付版を入れている人は自動では上がらないので、バージョンを明示して入れ直しを。Cursor にもローカルの Computer Use が来て、エージェントが画面を操作して自分で確かめる流れが進んでいます。</div>
 <div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
 <article class="card" data-c="sec"><span class="tag">🔒 セキュリティ<span class="must">要確認</span></span><h2>MCP 公式リファレンスサーバー v2.1.0：filesystem・fetch などの脆弱性を修正</h2><p>filesystem のシンボリックリンク経由の書き込みやパス末尾の空白・引用符による制限回避、everything の Origin 未検証、fetch の SSRF など、計8件の脆弱性が直りました。</p><div class="tip">💡 日付版（2025.x / 2026.x）を使っていると 2.0.1 は自動で選ばれないので、<code>npm install @modelcontextprotocol/server-filesystem@2.0.1</code> のように明示指定を（server-everything も 2.0.1）。fetch は <code>mcp-server-fetch</code> 2026.10.24 へ。</div><a href="https://github.com/modelcontextprotocol/servers/releases/tag/v2.1.0" target="_blank">リリースノート ↗</a></article>
@@ -61,4 +61,5 @@ function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
 try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
 if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
-</script></body></html>
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>

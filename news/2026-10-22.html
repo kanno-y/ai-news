@@ -27,7 +27,7 @@ code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius
 .copy.done{background:var(--accent);color:#fff}
 </style></head><body><div class="wrap">
 
-<header><h1>AIニュース朝刊</h1><p>2026年10月22日（木）　開発者向け・7件</p></header>
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年10月22日（木）　開発者向け・7件</p></header>
 <div class="lead"><b>今日のひとこと</b>　Claude API に2023年以来初の新バージョン <code>2026-10-21</code> が出て、Python SDK 2.0.0・TypeScript SDK 1.0.0 などもメジャー更新されました（破壊的変更あり、ライセンスは Apache 2.0 に）。SDK のバージョン指定を今日のうちに確認を。Claude Code は 2.1.307 で HTTP MCP のツール呼び出しが二重に送られる不具合が直っています。</div>
 <div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
 <article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude API に新バージョン 2026-10-21、SDK もメジャー更新</h2><p>2023-06-01 以来初の API バージョンが出て、新しい SDK と <code>ant</code> CLI はこれを既定で送ります。API バージョンと関係ない破壊的変更と、MIT から Apache 2.0 へのライセンス変更も入りました。</p><div class="tip">💡 requirements.txt や package.json で <code>anthropic</code> / <code>@anthropic-ai/sdk</code> の上限指定を確認し、上げる前に Claude Code の <code>/claude-api api-version</code> で移行箇所を洗い出す。2023-06-01 は非推奨にはなっていません。</div><a href="https://docs.claude.com/en/release-notes/api" target="_blank">Claude Platform リリースノート ↗</a></article>
@@ -64,4 +64,5 @@ function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
 try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
 if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
-</script></body></html>
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>

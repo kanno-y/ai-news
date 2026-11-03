@@ -27,7 +27,7 @@ code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius
 .copy.done{background:var(--accent);color:#fff}
 </style></head><body><div class="wrap">
 
-<header><h1>AIニュース朝刊</h1><p>2026年10月28日（水）　開発者向け・7件（10/27 朝〜）</p></header>
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年10月28日（水）　開発者向け・7件（10/27 朝〜）</p></header>
 <div class="lead"><b>今日のひとこと</b>　Claude Code v2.1.312 で Bedrock の推論プロファイル ARN を使うときのシステムプロンプトが短くなったので、まず手元の挙動を確認。AWS では Aurora Serverless（PostgreSQL）が最大 384 ACU まで広がりました。</div>
 <div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="tool">🛠 開発ツール</button><button data-c="aws">☁️ AWS</button><button data-c="sec">🔒 セキュリティ</button><button data-c="model">🧠 モデル</button><button data-c="biz">💼 業界・規制</button></div><div class="grid">
 <article class="card" data-c="tool"><span class="tag">🛠 開発ツール<span class="must">要確認</span></span><h2>Claude Code v2.1.312：Bedrock の推論プロファイル ARN では短いシステムプロンプトに</h2><p>Bedrock・Vertex などで Claude Code が名前を判別できないモデル（推論プロファイル ARN など）は短いシステムプロンプトを使うようになり、大きな CLAUDE.md を先頭だけ見て上書きしてしまう不具合も直りました。</p><div class="tip">💡 <code>claude update</code> のあと応答の質が変わったと感じたら、<code>CLAUDE_CODE_SIMPLE_SYSTEM_PROMPT=0</code> で従来のフルプロンプトに戻せます。</div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.312" target="_blank">リリースノート ↗</a></article>
@@ -61,4 +61,5 @@ function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.
 document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
 try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
 if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
-</script></body></html>
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>
