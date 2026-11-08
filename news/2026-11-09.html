@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIニュース朝刊 2026-11-09</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--sub:#5b6474;--accent:#2f6fed;--warn:#d9480f}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1e232b;--ink:#e8ebf0;--sub:#9aa3b2;--accent:#6e9bff;--warn:#ff8a5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;color:var(--sub)}
+.lead{background:var(--card);border-left:5px solid var(--warn);border-radius:10px;padding:16px 20px;margin:24px 0}
+.lead b{color:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{border:1px solid var(--sub);background:transparent;color:var(--ink);border-radius:999px;padding:4px 14px;cursor:pointer;font-size:14px}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.sec{margin:20px 0 10px;font-size:19px}
+.none{color:var(--sub);font-size:14px;margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:16px}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:8px}
+.tag{font-size:12px;color:var(--sub)}
+.card h2{margin:0;font-size:17px;line-height:1.5}.card p{margin:0}
+.try{background:rgba(47,111,237,.12);border-left:4px solid var(--accent);border-radius:8px;padding:10px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}.try b{color:var(--accent)}
+.cmd{display:flex;gap:8px;align-items:flex-start}.cmd code{flex:1;display:block;white-space:pre-wrap;word-break:break-all;padding:6px 8px}
+.card a{color:var(--accent);font-size:14px;text-decoration:none;margin-top:auto}.card a:hover{text-decoration:underline}
+footer{margin-top:32px;color:var(--sub);font-size:13px}
+.tips{margin-top:40px}.sec-h{font-size:21px;margin:0 0 4px}.sec-sub{margin:0 0 16px;color:var(--sub);font-size:14px}
+code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius:4px}
+.share{border:1px dashed var(--sub);border-radius:8px;padding:8px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.share-h{font-size:12px;color:var(--sub)}.share-t{margin:0;word-break:break-all}
+.copy{align-self:flex-end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:6px;padding:2px 12px;cursor:pointer;font-size:13px;white-space:nowrap}
+.copy.done{background:var(--accent);color:#fff}
+.must{color:var(--warn);margin-left:6px;font-weight:600}
+</style></head><body><div class="wrap">
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年11月9日（月）　ニュース6件・Tips3件</p></header>
+<div class="lead"><b>今日のひとこと</b>　今日の朝は、Mac で Orca を使っているなら <code>sw_vers -productVersion</code> で 13.4 以上かだけ確認しましょう。あわせて Claude Code の auto mode をテレメトリ無効や LLM ゲートウェイ経由で使っているなら、v2.1.319 で動きが変わっています。</div>
+<div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="must">⚠️ 要確認</button><button data-c="skill">🧭 エージェント活用スキル</button><button data-c="sec">🔒 セキュリティ</button><button data-c="tool">🛠 ツール活用</button></div>
+
+<section data-s="must"><h3 class="sec">⚠️ 要確認</h3><div class="grid">
+<article class="card" data-c="must"><span class="tag">🛠 ツール活用<span class="must">要確認</span></span><h2>Claude Code v2.1.319：テレメトリ／フィーチャーフラグを切った auto mode は、サーバー確認できない呼び出しが「確認」か「拒否」になる</h2><p>テレメトリまたはフィーチャーフラグを切っている環境（LLM ゲートウェイ経由を含む）では、auto mode が内蔵の分類器に切り替わらず、サーバー側で確認できない呼び出しを確認または拒否します。従来の動きに戻すには <code>CLAUDE_CODE_AUTO_MODE_SERVER=0</code> を設定します（Bedrock・Vertex・Foundry は変更なし）。</p><div class="try"><b>👉 やってみる：</b>自分の環境が該当するかを探す。<div class="cmd"><code id="c1">rg -n "TELEMETRY|FEATURE_FLAGS|AUTO_MODE|ANTHROPIC_BASE_URL" ~/.claude/settings.json .claude/settings*.json; env | rg "CLAUDE_CODE|TELEMETRY|ANTHROPIC_BASE_URL"</code><button class="copy" data-target="c1">コピー</button></div>該当して auto mode を使っているなら、<code>claude update</code> のあとに小さな作業を1つ任せ、確認や拒否が増えていないかを見る。増えたら従来動作に戻す変数を試すか、設定を見直す。該当しなければ対応は不要。</div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.319" target="_blank">Claude Code v2.1.319 リリースノート ↗</a></article>
+<article class="card" data-c="must"><span class="tag">🛠 ツール活用<span class="must">要確認</span></span><h2>Orca v1.4.252：macOS 13.4 以上が必須に、ペアリングコードは期限つきに</h2><p>11月7日のリリースで、Orca の最低 macOS が 12 から 13.4 になりました（古い Mac は最後の対応版にとどまります）。未使用のペアリングコードは、スマホ用 QR が10分、別コンピュータ用リンクが60分で失効し、ローカルのブラウザ制御プロキシはセッションごとのトークンが必要になります。</p><div class="try"><b>👉 やってみる：</b>更新前に次を確認する。<div class="cmd"><code id="c2">sw_vers -productVersion</code><button class="copy" data-target="c2">コピー</button></div>13.4 未満なら、macOS 13.7 に上げれば更新を受け続けられます。スマホやほかの PC をペアリングし直す予定があるなら、コードを発行したらすぐ使う。</div><a href="https://github.com/stablyai/orca/releases/tag/v1.4.252" target="_blank">Orca v1.4.252 リリースノート ↗</a></article>
+</div></section>
+
+<section data-s="skill"><h3 class="sec">🧭 エージェント活用スキル</h3><div class="grid">
+<article class="card" data-c="skill"><span class="tag">🧭 エージェント活用スキル</span><h2>「できた」を信じず、アプリを動かして確かめる verifier サブエージェントを作る</h2><p>Claude 公式の教材は、並列セッションは別ファイルを触る作業だけに分け、まず2〜3本から始めるよう勧めています。そのうえで、変更した動作を実際に動かして確かめるサブエージェントを <code>.claude/agents/</code> に置くと、完了報告の前に検証が入ります。</p><div class="try"><b>👉 やってみる：</b>次のファイルを置き、実装を頼んだあとに呼び出す。<div class="cmd"><code id="c3">mkdir -p .claude/agents &amp;&amp; cat &gt; .claude/agents/verifier.md &lt;&lt;'EOF'
+---
+name: verifier
+description: Runs the app and checks the change works before the session reports done
+tools: Read, Grep, Glob, Bash
+---
+Start the app and run the relevant tests (e.g. pnpm vitest run path/to/file.test.ts). Exercise the changed behavior and report evidence (commands and output). Report only what does not match the request.
+EOF</code><button class="copy" data-target="c3">コピー</button></div>次の機能を頼むときに「完了前に verifier サブエージェントで確認して」と添える。別ファイルを触る作業が2つあるなら <code>claude --worktree feature-a</code> と <code>claude --worktree feature-b</code> で並べ、レビューが追いつく本数までにする。</div><a href="https://academy.claude.com/courses/ai-native-sdlc-playbook/parallel-sessions-and-subagents" target="_blank">Claude Academy：Parallel sessions and subagents ↗</a></article>
+</div></section>
+
+<section data-s="sec"><h3 class="sec">🔒 セキュリティ</h3><div class="grid">
+<article class="card" data-c="sec"><span class="tag">🔒 セキュリティ</span><h2>Issue を読む bot には秘密も書き込み権限も渡さない：投稿者を確認し、ゲートはモデルに決めさせない</h2><p>Radware が約1.45億件の GitHub の Issue・PR などを調べ、人には見えずエージェントだけが読める隠しテキストで AI を狙った攻撃（47件）の半数超が、メンテナー自身のトリアージ・レビュー・CI の bot 向けだったと報告しています。トークンを盗ませる指示も実在しました。</p><div class="try"><b>👉 やってみる：</b>エージェントを GitHub Actions で動かしているリポジトリで次を点検する。<div class="cmd"><code id="c4">rg -n "permissions:|GITHUB_TOKEN|secrets\.|issues:|issue_comment|pull_request_target" .github/workflows</code><button class="copy" data-target="c4">コピー</button></div>(1) Issue やコメントで起動するジョブの <code>permissions:</code> を、読み取りとラベル付けなど必要最小限に明示する。(2) そのジョブにシークレットやクラウド認証情報を渡さない。(3) 「許可」の判定は、モデルの出力ではなく、モデルが書き換えられないチェックにする。(4) コメントのマーカーに従う処理は、投稿者の <code>author_association</code> を確認する。</div><a href="https://www.radware.com/blog/prompt-injecting-coding-agents/" target="_blank">Radware：Who Is Prompt-Injecting Coding Agents? ↗</a></article>
+</div></section>
+
+<section data-s="tool"><h3 class="sec">🛠 ツール活用</h3><div class="grid">
+<article class="card" data-c="tool"><span class="tag">🛠 ツール活用</span><h2>Orca v1.4.252：返信から会話を分岐し、/plan で作る前に計画させる</h2><p>Chat UI で、終わった返信のどこからでも会話をフォーク（元のチャットはそのまま）でき、Claude・Codex のチャットでは <code>/plan</code> で Plan mode に切り替えられます。Plan mode は開き直しても保たれます。「案A・案B を別々に試す」がやりやすくなります。</p><div class="try"><b>👉 やってみる：</b>Orca を 1.4.252 以上にして、Chat UI の Claude チャットで次を送る。<div class="cmd"><code id="c5">/plan</code><button class="copy" data-target="c5">コピー</button></div>設計が割れる変更（例：AppSync のリゾルバ構成）で、計画が出たら、案ごとに返信を分岐して別の方向を試し、どちらが小さい差分で済むかを比べる。Chat UI が見当たらなければ Settings → Agents で Chat か CLI かを選ぶ。</div><a href="https://github.com/stablyai/orca/releases/tag/v1.4.252" target="_blank">Orca v1.4.252 リリースノート ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 ツール活用</span><h2>Claude Code：<code>permissions.denyInsteadOfPrompting</code> で、確認待ちで止まらず「拒否して先へ」進める</h2><p>v2.1.319 で追加された設定で、許可の確認待ちになる呼び出しを拒否して、そのターンを続けます（ターミナルのセッション、サブエージェント、チームメイトが対象）。夜間の長い作業が確認待ちで止まりにくくなります。同じ版で、MCP サーバーがタスクとして走らせた呼び出しは、すぐバックグラウンドに回るようになりました。</p><div class="try"><b>👉 やってみる：</b>実験用のリポジトリで <code>.claude/settings.local.json</code> に次を入れる。<div class="cmd"><code id="c6">{"permissions":{"denyInsteadOfPrompting":true}}</code><button class="copy" data-target="c6">コピー</button></div><code>claude update</code> のあと、許可していない操作を含む小さな作業（例：未許可のコマンドを使うテスト修正）を頼み、拒否されて作業が続くかを見る。拒否された操作は、必要なら <code>permissions.allow</code> に足す。MCP の待機を従来どおりにしたいときは <code>CLAUDE_CODE_DISABLE_MCP_TASK_BACKGROUND</code> を設定する。</div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.319" target="_blank">Claude Code v2.1.319 リリースノート ↗</a></article>
+</div></section>
+
+<section class="tips"><h2 class="sec-h">👥 チームに共有したいTips</h2><p class="sec-sub">明日から真似できる使い方です。「共有用」の文はそのまま Slack に貼れます。</p>
+<div class="grid">
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Claude Code：大きな機械的変更は <code>/batch</code> で worktree 分離のサブエージェントに分ける</h2><p><code>/batch</code> は1つの大きな変更を 5〜30 の worktree 分離サブエージェントに分けるスキルです。同じ種類の置き換えを多数のファイルに入れるときに、編集の衝突を避けて並べられます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share1">Claude Code の `/batch` を使うと、大きな機械的変更を 5〜30 個の worktree 分離サブエージェントに分けて進められます。ファイル同士が衝突しないので、同じ置き換えを多数のファイルに入れる作業に向いています。https://code.claude.com/docs/en/agents</p><button class="copy" data-target="share1">コピー</button></div><a href="https://code.claude.com/docs/en/agents" target="_blank">Claude Code Docs：Run agents in parallel ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Claude Code：終わったサブエージェントも <code>/tasks</code> から開き直して追加で頼める</h2><p>v2.1.319 で、<code>/tasks</code> に「Earlier in this session」の行が増え、終わったサブエージェントを開き直してメッセージできます（再起動後も）。一度調べさせた文脈を使い回せます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share2">Claude Code v2.1.319 から、/tasks の「Earlier in this session」で終わったサブエージェントを開き直して追加の指示を送れます。調べ終えた文脈をそのまま使えるので、追加の質問で最初からやり直さずに済みます。https://github.com/anthropics/claude-code/releases/tag/v2.1.319</p><button class="copy" data-target="share2">コピー</button></div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.319" target="_blank">Claude Code v2.1.319 ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>MCP：ツールを「読む＝許可、書く／外に送る＝確認、壊す＝拒否」で分け、既定は確認にする</h2><p>DigitalOcean の MCP セキュリティ解説は、読み取り専用の呼び出しだけを許可し、書き込みや社外への送信は確認、破壊的な操作は拒否、新しいツールの既定は確認か拒否にするよう勧めています。自動承認は最後の砦をなくします。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share3">MCP のツールは「読むだけは許可、書き込みや外部送信は確認、破壊的な操作は拒否」に分け、新しいツールの既定は確認にしておくと、誤作動や注入されたときの被害を抑えられます。https://www.digitalocean.com/resources/articles/mcp-security</p><button class="copy" data-target="share3">コピー</button></div><a href="https://www.digitalocean.com/resources/articles/mcp-security" target="_blank">DigitalOcean：MCP Security ↗</a></article>
+</div></section>
+<footer>出典は各リンク先の一次情報・報道記事です。</footer></div><script>
+document.getElementById('f').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+document.querySelectorAll('#f button').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('section[data-s]').forEach(s=>s.style.display=(b.dataset.c==='all'||s.dataset.s===b.dataset.c)?'':'none');});
+</script><script>
+function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
+try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
+if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>
