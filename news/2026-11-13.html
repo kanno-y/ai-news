@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIニュース朝刊 2026-11-13</title>
+<style>
+:root{--bg:#f5f6f8;--card:#fff;--ink:#1d2330;--sub:#5b6474;--accent:#2f6fed;--warn:#d9480f}
+@media (prefers-color-scheme:dark){:root{--bg:#14171c;--card:#1e232b;--ink:#e8ebf0;--sub:#9aa3b2;--accent:#6e9bff;--warn:#ff8a5c}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;line-height:1.7}
+.wrap{max-width:860px;margin:0 auto;padding:32px 20px 60px}
+header h1{margin:0;font-size:26px}header p{margin:4px 0 0;color:var(--sub)}
+.lead{background:var(--card);border-left:5px solid var(--warn);border-radius:10px;padding:16px 20px;margin:24px 0}
+.lead b{color:var(--warn)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.filters button{border:1px solid var(--sub);background:transparent;color:var(--ink);border-radius:999px;padding:4px 14px;cursor:pointer;font-size:14px}
+.filters button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.sec{margin:20px 0 10px;font-size:19px}
+.none{color:var(--sub);font-size:14px;margin:0 0 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:16px}
+.card{background:var(--card);border-radius:12px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);display:flex;flex-direction:column;gap:8px}
+.tag{font-size:12px;color:var(--sub)}
+.card h2{margin:0;font-size:17px;line-height:1.5}.card p{margin:0}
+.try{background:rgba(47,111,237,.12);border-left:4px solid var(--accent);border-radius:8px;padding:10px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}.try b{color:var(--accent)}
+.cmd{display:flex;gap:8px;align-items:flex-start}.cmd code{flex:1;display:block;white-space:pre-wrap;word-break:break-all;padding:6px 8px}
+.card a{color:var(--accent);font-size:14px;text-decoration:none;margin-top:auto}.card a:hover{text-decoration:underline}
+footer{margin-top:32px;color:var(--sub);font-size:13px}
+.tips{margin-top:40px}.sec-h{font-size:21px;margin:0 0 4px}.sec-sub{margin:0 0 16px;color:var(--sub);font-size:14px}
+code{font-size:.9em;background:rgba(127,127,127,.15);padding:0 4px;border-radius:4px}
+.share{border:1px dashed var(--sub);border-radius:8px;padding:8px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.share-h{font-size:12px;color:var(--sub)}.share-t{margin:0;word-break:break-all}
+.copy{align-self:flex-end;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:6px;padding:2px 12px;cursor:pointer;font-size:13px;white-space:nowrap}
+.copy.done{background:var(--accent);color:#fff}
+.must{color:var(--warn);margin-left:6px;font-weight:600}
+</style><body><div class="wrap">
+<header><h1>AIニュース朝刊</h1><p class="idx-link" style="margin:4px 0"><a href="../index.html" style="color:inherit;font-size:.9em">過去分の一覧 →</a></p><p>2026年11月13日（金）　ニュース7件・Tips3件</p></header>
+<div class="lead"><b>今日のひとこと</b>　まず <code>claude update</code> で Claude Code を 2.1.323 にしましょう。deny ルールやサンドボックスのすり抜けがまとめて直っています。上げたら、許可ルールに <code>Bash(PORT=*…)</code> のような「変数に *」の形がないかだけ見ておくと安心です。</div>
+<div class="filters" id="f"><button class="on" data-c="all">すべて</button><button data-c="must">⚠️ 要確認</button><button data-c="skill">🧭 エージェント活用スキル</button><button data-c="sec">🔒 セキュリティ</button><button data-c="tool">🛠 ツール活用</button></div>
+
+<section data-s="must"><h3 class="sec">⚠️ 要確認</h3><div class="grid">
+<article class="card" data-c="must"><span class="tag">🛠 ツール活用<span class="must">要確認</span></span><h2>Claude Code v2.1.323：deny/サンドボックスのすり抜けを多数修正、サンドボックス内の <code>git worktree add</code> は失敗するように</h2><p>11月13日 7時ごろ（日本時間）のリリースで、<code>sudo</code>・<code>env</code> 経由のコマンドに deny/ask ルールが効かない、<code>Read</code> の deny 対象に Write/Edit で書ける、<code>claude -p</code> でサンドボックス設定が不正だとサンドボックスなしで Bash が動く、といった問題が直りました。一方で、macOS/Linux のサンドボックスでは <code>git worktree add</code>/<code>move</code>/<code>remove</code> が読み取り専用で失敗するようになり、<code>.mcp.json</code> の MCP サーバー承認は名前の完全一致になりました（表記が違えば再確認）。</p><div class="try"><b>👉 やってみる：</b>まず上げて、許可ルールに「変数に <code>*</code>」の形がないか探す（この版から起動時に警告され、<code>Bash(NODE_ENV*)</code> のような形は確認が出るようになりました）。<div class="cmd"><code id="c1">claude update &amp;&amp; claude --version &amp;&amp; rg -n &#x27;Bash\([A-Z_]+=?\*|Bash\([a-z]+\*\)&#x27; ~/.claude/settings.json .claude/settings*.json</code><button class="copy" data-target="c1">コピー</button></div>Claude にサンドボックス内で worktree を作らせていた手順があれば、worktree は Orca 側で作るてから、その中で Claude Code を起動する形に切り替える。</div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.323" target="_blank">Claude Code v2.1.323 リリースノート ↗</a></article>
+<article class="card" data-c="must"><span class="tag">🛠 ツール活用<span class="must">要確認</span></span><h2>Claude の「無料フルリセット」1回分：12月11日 7:00（日本時間）までに、重い実装日に使う</h2><p>Pro・Max・Ultra・Team の全ユーザーに、全モデル・全上限を一度だけ満タンに戻せるリセットが配られました。期限は 12月10日 14:00 PT（日本時間 12月11日 7:00）で、使うと取り消せず、使わなければ失効します。Claude Code の端末からは押せませんが、上限はアカウント共通なので Claude Code の残量も戻ります。</p><div class="try"><b>👉 やってみる：</b>今すぐ押さずに、Web か Claude Desktop の <b>Settings → Usage → Limit resets</b> に「Reset for free」が出ているかだけ見ておく。Claude Code で上限に近づいた日（<code>/usage</code> で週の残りを確認）に、ブラウザでそのボタンを押して作業を続ける。期限前日にカレンダーへ「Claude リセット期限」を入れておくと失効しません。</div><a href="https://x.com/ClaudeDevs/status/2120275296637321476" target="_blank">ClaudeDevs（公式 X）の告知 ↗</a></article>
+</div></section>
+
+<section data-s="skill"><h3 class="sec">🧭 エージェント活用スキル</h3><div class="grid">
+<article class="card" data-c="skill"><span class="tag">🧭 エージェント活用スキル</span><h2>並列エージェントは「1人のコーディネーター＋明示した優先順位」で回し、他の作業を読むまでコミットさせない</h2><p>Anthropic の研究（11月11日）では、人ごとにエージェントを立てて直接やり取りさせるより、1つのコーディネーターが全員分を受け持つほうが、4つの環境すべてで成果が良くなりました。共有予算では「リーダーを決めて優先順位を明記」、グループ注文では「メッセージを読むまで発注させない」が効いたと報告されています。</p><div class="try"><b>👉 やってみる：</b>Orca で worktree を分けて複数のチャットを走らせるときは、1つを調整役にして最初にこう送る。<div class="cmd"><code id="c2">あなたはこの作業のコーディネーターです。自分ではコードを書かず、各ワーカーの担当・優先順位・マージ順を決めて coordination.md に書いてください。優先順位は (1) 既存テストを壊さない (2) GraphQL スキーマの変更は1か所にまとめる (3) その他、です。各ワーカーには「コミット前に必ず coordination.md と他ワーカーの最新メモを読み、自分の変更が他の担当と衝突しないか一文で書いてからコミットする」と指示してください。衝突したら作業を止めてあなたに報告させてください。</code><button class="copy" data-target="c2">コピー</button></div>ワーカー側のチャットには「coordination.md の自分の担当だけをやる」と1行添える。</div><a href="https://alignment.anthropic.com/2026/worse-together/" target="_blank">Anthropic：Worse Together（multi-user multi-agent） ↗</a></article>
+</div></section>
+
+<section data-s="sec"><h3 class="sec">🔒 セキュリティ</h3><div class="grid">
+<article class="card" data-c="sec"><span class="tag">🔒 セキュリティ</span><h2>進行中の wfx-loot：GitHub Actions と npm postinstall で AWS 鍵や AI の API キーを盗み、痕跡を消す</h2><p>OX Security によると、乗っ取られた 4,837 の GitHub アカウントが「docs: dependency audit notes」という探りの PR を出し、書き込めるリポジトリに CI 保守を装ったコミットを入れて数分で戻し、ワークフロー実行とログも消しています。少なくとも 1,806 リポジトリで秘密が送られ、11月12日時点でも続いています。</p><div class="try"><b>👉 やってみる：</b>自分が書き込めるリポジトリで、探りの PR と偽装コミットを探す（OWNER は自分の組織名やユーザー名に置き換え）。<div class="cmd"><code id="c3">gh search prs &quot;docs: dependency audit notes&quot; --owner OWNER
+gh search commits &quot;ci: refresh build cache&quot; --owner OWNER
+gh search commits &quot;chore: add ci helper&quot; --owner OWNER</code><button class="copy" data-target="c3">コピー</button></div>見つかったら、そのワークフローから届く Secrets と AWS ロールを全部ローテーション対象にする。AWS では「誰でも引き受けられる」信頼ポリシーのロールが足されていないかも見る。<div class="cmd"><code id="c4">aws iam list-roles --output json | rg -n -B8 &#x27;&quot;AWS&quot;: &quot;\*&quot;&#x27;</code><button class="copy" data-target="c4">コピー</button></div></div><a href="https://www.ox.security/blog/thousands-of-github-accounts-hijacked-with-wfx-loot-ci-secret-stealing-malware-via-github-actions-npm/" target="_blank">OX Security：wfx-loot ↗</a></article>
+<article class="card" data-c="sec"><span class="tag">🔒 セキュリティ</span><h2>「エージェントを遠隔操作する npm」を見つける：<code>ANTHROPIC_BASE_URL</code> と <code>--dangerously-skip-permissions</code> を点検</h2><p>11月9日に GitHub が <code>@bestcoolman/dev-mcp</code> をマルウェアと公表し、Kuntur は OSV に記録のある同じ系統の npm を19件まとめています。Claude Code の通信先を書き換えて API キーと全プロンプトを送るもの、遠隔の指示で <code>claude --dangerously-skip-permissions</code> を起動するものなどで、11月10日時点で17件がまだ npm にありました。</p><div class="try"><b>👉 やってみる：</b>Claude Code の設定に、自分が入れていない通信先や鍵の取得コマンドがないかと、確認なしモードで動く claude がいないかを見る。<div class="cmd"><code id="c5">rg -n &quot;ANTHROPIC_BASE_URL|apiKeyHelper&quot; ~/.claude/settings.json ~/.claude.json .claude/ 2&gt;/dev/null; ps aux | rg -- &quot;--dangerously-skip-permissions&quot; | rg -v rg; npm ls -g --depth=0 | rg -i &quot;claude|agent|mcp|anthropic&quot;</code><button class="copy" data-target="c5">コピー</button></div>知らないホストが出たら、そのマシンをネットから外し、別の端末から Anthropic・GitHub・AWS の鍵を差し替える。</div><a href="https://kuntur.io/guides/check-malicious-npm-ai-agent-packages" target="_blank">Kuntur：npm packages that hijack Claude Code（OSV 記録つき一覧） ↗</a></article>
+</div></section>
+
+<section data-s="tool"><h3 class="sec">🛠 ツール活用</h3><div class="grid">
+<article class="card" data-c="tool"><span class="tag">🛠 ツール活用</span><h2>Orca v1.4.257：内蔵ブラウザに書いた修正メモを、エージェントが <code>orca tab annotations</code> で読める</h2><p>Orca のブラウザでページに書いた未送信のメモが、再読み込みや再起動のあとも残るようになり、デスクトップで動くエージェントは送信前でも <code>orca tab annotations</code> でそれを読めます。フォルダーワークスペースでもセットアップスクリプトが動き、削除前にはアーカイブスクリプトが走るようになりました。</p><div class="try"><b>👉 やってみる：</b>Next.js の画面や Storybook を Orca のブラウザで開き、直したい箇所にメモを書いてから、チャットにこう送る。<div class="cmd"><code id="c6">orca tab annotations で、いま開いているタブに私が書いたメモを読んでください。メモごとに、該当するコンポーネントのファイルと直し方を一覧にしてから修正し、Vitest と Storybook のストーリーが通ることを確認して、メモと修正の対応表を返してください。</code><button class="copy" data-target="c6">コピー</button></div>音声入力で考えながら話すなら <b>Settings → Voice → Input → Stop After Silence</b> を 1分 にする。</div><a href="https://github.com/stablyai/orca/releases/tag/v1.4.257" target="_blank">Orca v1.4.257 リリースノート ↗</a></article>
+<article class="card" data-c="tool"><span class="tag">🛠 ツール活用</span><h2>Cursor Projects がマルチプレイに：チームの人のエージェントと、タスクボードと仕様を共有して作業する</h2><p>Projects（コーディネーターが Cloud Agent に作業を配るしくみ）に、チームメンバーを招待できるようになりました（ベータ）。各自が自分のコーディネーターを持ち、タスクボードと「Context」（要件・仕様・図）を共有し、コーディネーター同士が直接やり取りして衝突を先に避けます。相手のエージェントからのメッセージは信頼しない入力として扱われ、横のチャットは秘密を渡しません。</p><div class="try"><b>👉 やってみる：</b>使えるのはチームアカウントで Cursor 3.26.13 以上、相手がリポジトリにアクセスできる場合です。Cursor の About 画面で版を確認し、左のナビから Project を作って <b>Invite teammates to this project</b> で招待する。最初にコーディネーターへこう送る。<div class="cmd"><code id="c7">このプロジェクトの Context に、要件・受入条件・触ってよいディレクトリと触らないディレクトリ・検証コマンド（npm test など）をまとめたページを作ってください。以後、どのメンバーのエージェントも作業前にこのページを読み、タスクボードの担当外のファイルは変更しないでください。</code><button class="copy" data-target="c7">コピー</button></div>共有の Context に社外秘を置いてよいかは、チームのルールで先に決めておく。</div><a href="https://cursor.com/docs/agent/projects" target="_blank">Cursor Docs：Projects（Multiplayer Projects） ↗</a></article>
+</div></section>
+
+<section class="tips"><h2 class="sec-h">👥 チームに共有したいTips</h2><p class="sec-sub">明日から真似できる使い方です。「共有用」の文はそのまま Slack に貼れます。</p>
+<div class="grid">
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2><code>/compact</code> は上限で自動に任せず、タスクの切れ目で「残すもの」を指定して実行する</h2><p>OptiFlume の測定では、文脈の増加の58%はモデル自身の返信と思考でした。自動要約は一度だけ出た制約やエラー文を落としやすいので、区切りで残す項目を指定して圧縮すると、後半の取り違えが減ります。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share1">Claude Code の /compact は、上限で自動に任せるより、タスクの区切りで「/compact 目標・決定事項・制約・失敗した方法・次の一手を残して」のように残すものを指定して実行すると、後半で制約を忘れにくくなります。https://optiflume.ai/learn/context-engineering-for-coding-agents</p><button class="copy" data-target="share1">コピー</button></div><a href="https://optiflume.ai/learn/context-engineering-for-coding-agents" target="_blank">OptiFlume：Context engineering for coding agents ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2>Claude Code：サブエージェントの途中経過サマリーを切って、その分のリクエストを減らす</h2><p>v2.1.323 で、<code>CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES=1</code> が文書化されました（2.1.318 から有効）。サブエージェントの進捗要約と、それを書くためのリクエストが止まるので、並列でたくさん走らせるときの消費を抑えられます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share2">Claude Code でサブエージェントを多く使うときは、CLAUDE_CODE_DISABLE_AGENT_PROGRESS_SUMMARIES=1 を設定すると、途中経過の要約とそのためのリクエストを止められます（v2.1.318 以降）。結果だけ見られれば十分なときにおすすめです。https://github.com/anthropics/claude-code/releases/tag/v2.1.323</p><button class="copy" data-target="share2">コピー</button></div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.323" target="_blank">Claude Code v2.1.323 リリースノート ↗</a></article>
+<article class="card" data-c="team"><span class="tag">👥 チームTips</span><h2><code>.claude/settings.local.json</code> が git に入っていないか確かめる</h2><p>v2.1.323 から、秘密を含みそうな許可ルールや、git 管理下の <code>settings.local.json</code> に保存されそうなルールは「次回から聞かない」を選んでもそのセッション限りになりました。そもそも個人用の設定ファイルが追跡されていないかを見ておくと、許可ルールやトークンの混入を防げます。</p><div class="share"><div class="share-h">共有用</div><p class="share-t" id="share3">Claude Code の個人用設定 .claude/settings.local.json が git に入っていないか、git ls-files .claude/settings.local.json で一度確かめておくと安心です。出てきたら .gitignore に足して git rm --cached で外しましょう。https://github.com/anthropics/claude-code/releases/tag/v2.1.323</p><button class="copy" data-target="share3">コピー</button></div><a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.323" target="_blank">Claude Code v2.1.323 リリースノート ↗</a></article>
+</div></section>
+<footer>出典は各リンク先の一次情報・報道記事です。</footer></div><script>
+document.getElementById('f').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+document.querySelectorAll('#f button').forEach(x=>x.classList.toggle('on',x===b));
+document.querySelectorAll('section[data-s]').forEach(s=>s.style.display=(b.dataset.c==='all'||s.dataset.s===b.dataset.c)?'':'none');});
+</script><script>
+function fallbackCopy(t){const a=document.createElement('textarea');a.value=t;a.style.position='fixed';a.style.opacity='0';document.body.appendChild(a);a.select();let ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);return ok}
+document.querySelectorAll('.copy').forEach(b=>b.addEventListener('click',async()=>{const t=document.getElementById(b.dataset.target).textContent;let ok=false;
+try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(t);ok=true}}catch(e){}
+if(!ok)ok=fallbackCopy(t);b.textContent=ok?'コピーしました':'コピーできませんでした';b.classList.toggle('done',ok);setTimeout(()=>{b.textContent='コピー';b.classList.remove('done')},1800)}));
+</script><p class="idx-link" style="text-align:center;margin:24px 0 32px"><a href="../index.html" style="color:inherit">← 過去分の一覧へ</a></p>
+</body></html>
